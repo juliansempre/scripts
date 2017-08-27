@@ -1,0 +1,107 @@
+(copiar) xcopy c:\Users\julian\Downloads\trojan-remover-6-9-4.exe c:\Users\julian\desktop
+
+(deletar)del c:\windows\temp\meuarquivo.exe ou rmdir
+
+
+(Mover)move c:\windows\temp\meuarquivo.exe c:\temp
+
+(criar pasta) md ou mkdir
+
+dir
+cls
+(votar uma pasta)cd..
+(voltar tudo)cd\
+(info da memoria ram) mem
+(renomear) rename ou ren
+
+help - aparece os codigos mais usados
+dir/w - mostra tudo o que tem na pasta
+cd - caminho da pasta
+md - criar uma pasta
+rd - apagar pasta vazia
+dir/a - mostra a data
+c: - indica letra do disco rigido ou hardware
+del *.extensão /s - deletar arquivos
+copy c: *.* i: - copia tudo dum disco para o outro
+_____________________________________________
+Comandos cmd: 
+ASSOC exibe ou modifica associações de extensões de arquivo. 
+AT agenda comandos e programas para serem executados em um computador. 
+ATTRIB exibe ou altera atributos de arquivos. 
+BREAK define ou limpa a verificação estendida CTRL+C. 
+CACLS exibe ou modifica listas de controle de acesso (ACLs) de arquivos. 
+CALL chama um programa em lotes a partir de outro. 
+CD exibe o nome da pasta atual ou faz alterações nela. 
+CHCP exibe ou define o número da página de código ativa. 
+CHDIR exibe o nome da pasta atual ou faz alterações nela. 
+CHKDSK verifica um disco e exibe um relatório de status. 
+CHKNTFS exibe ou modifica a verificação do disco na inicialização. 
+CLS limpa a tela. 
+CMD inicia uma nova instância do interpretador de comandos do Windows. 
+COLOR define as cores padrão de primeiro plano e do plano de fundo do console. 
+COMP compara o conteúdo de dois arquivos ou grupos de arquivos. 
+COMPACT exibe ou altera a compactação de arquivos em partições NTFS. 
+CONVERT converte volumes FAT em NTFS. Não é possível converter a unidade atual. 
+COPY copia um ou mais arquivos para outro local. 
+DATE exibe ou ajusta a data. 
+DEL Exclui um ou mais arquivos. 
+DIR exibe uma lista de arquivos e subpastas em uma pasta. 
+DISKCOMP compara o conteúdo de dois disquetes. 
+DISKCOPY copia o conteúdo de um disquete para outro. 
+DOSKEY edita linhas de comando, volta a chamar comandos do Windows e cria macros. 
+ECHO exibe mensagens ou ativa ou desativa o eco de comandos. 
+ENDLOCAL encerra a localização de alterações de ambiente em um arquivo em lotes. 
+ERASE Exclui um ou mais arquivos. 
+EXIT sai do programa CMD.EXE (interpretador de comandos). 
+FC compara dois arquivos ou grupos de arquivos e exibe as diferenças entre eles. 
+FIND procura uma seqüência de texto em um arquivo ou arquivos. 
+FINDSTR procura seqüências de texto em arquivos. 
+FOR executa um determinado comando para cada arquivo em um grupo de arquivos. 
+FORMAT formata um disco para uso com o Windows. 
+FTYPE exibe ou modifica os tipos de arquivo utilizados em associações de extensões de arquivos. 
+GOTO direciona o interpretador de comandos do Windows para uma linha identificada em um programa em lotes. 
+GRAFTABL permite que o Windows exiba um conjunto de caracteres estendidos em modo gráfico. 
+HELP fornece informações de ajuda sobre comandos do Windows. 
+IF realiza processamento condicional em arquivos em lotes. 
+LABEL cria, altera ou exclui o rótulo de volume de um disco. 
+MD Cria um diretório. 
+MKDIR Cria um diretório. 
+MODE Configura um dispositivo do sistema. 
+MORE exibe a saída fazendo pausa a cada tela. 
+MOVE move um ou mais arquivos de uma pasta para outra pasta. 
+PATH exibe ou define um caminho de pesquisa para arquivos executáveis. 
+PAUSE suspende o processamento de um arquivo em lotes e exibe uma mensagem. 
+POPD restaura o valor anterior da pasta atual salva por PUSHD. 
+PRINT Imprime um arquivo de texto. 
+PROMPT altera o prompt de comando do Windows. 
+PUSHD salva a pasta atual e, em seguida, altera a mesma. 
+RD Remove uma pasta. 
+RECOVER recupera informações ainda compreensíveis de um disco defeituoso ou danificado. 
+REM grava comentários (observações) em arquivos em lotes ou no CONFIG.SYS. 
+REN altera o nome de um arquivo ou arquivos. 
+REName altera o nome de um arquivo ou arquivos. 
+REPLACE substitui arquivos. 
+RMDIR Remove uma pasta. 
+SET exibe, define ou remove variáveis de ambiente do Windows. 
+SETLOCAL inicia a localização de alterações de ambiente em um arquivo em lotes. 
+SHIFT altera a posição dos parâmetros substituíveis em um arquivo em lotes. 
+SORT classifica a entrada. 
+START inicia uma janela separada para executar um programa ou comando especificado. 
+SUBST associa um caminho a uma letra de unidade. 
+TIME exibe ou ajusta a hora do sistema. 
+TITLE define o título da janela para uma sessão do CMD.EXE. 
+TREE exibe graficamente a estrutura de pastas de uma unidade ou caminho. 
+TYPE exibe o conteúdo de um arquivo de texto. 
+VER exibe a versão do Windows. 
+VERIFY faz com que o Windows verifique se os arquivos estão gravados corretamente em um disco. 
+VOL exibe um rótulo e número de série de volume de disco. 
+XCOPY copia arquivos e árvores de pastas. 
+attrib - r -a -s -h /s /d
+
+* date Edita ou exibe a data do computador. 
+* time Edita ou exibe a hora do computador. 
+* mkdir Cria um diretório (pasta) novo. Ex. md pasta 
+* chdir Muda de diretório (pasta). Ex. cd pasta 
+* cls Limpa o conteúdo da tela. 
+* echo Exibe um conteúdo texto na tela. EX. echo "conteudo" 
+* help Exibe a relação completa dos comandos. 

@@ -1,0 +1,412 @@
+Registros Tabelas Arquivos
+Fichas Pastas Armarios
+Arquivos sequenciais
+indice = numeração
+COBOL = linguagem de programação para dados
+DNS = SGBD
+database = navios | 
+DDL = data definition langueage
+tipos primitivos:
+	numericos(inteiro[tinyint - 3bits,smallint,int,mediumint,bigint],
+	real(decimal, float,double,real)
+	logico(bit, boolean))
+	data e tempo(date,datetime,timestamp,time,year),
+	literais(caracteres(char,varchar #variante pode mudar),
+	textos(tinytext,text,mediumtext,longtext),
+	binarios(tinyblob,blob,mediumblob,longblob #guarda imagem),
+	coleções(enum, set)), 
+	espaciais(mysql5 = geometry,point,polygon,multipolygon)
+//////////////////// aula 1 //////////////////////////////////
+Sintaxes:
+
+create database cadastro;
+
+    use cadastro;
+
+create table pessoas (
+    nome varchar(30),
+    idade tinyint(3),
+    sexo char(1),
+    peso float,,
+    altura float,
+    nacionalidade varchar(20),
+);
+
+describe pessoas; // ver a tabela criada
+
+drop database cadastro; // deletar cadastro
+ 
+/////////////////////////////////////////////////////////
+correto:
+
+create database cadastro
+default character set utf8
+default collate utf8_general_ci;
+ 
+
+create table pessoas (
+	id int not null auto_increment, # ao inserir cliente acrescentar 1 numero
+    nome varchar(30) NOT NULL, 
+    nascimento date,
+    sexo enum('M','F'),
+    peso decimal(5,2), #102k,35gramas,
+    altura decimal(3,2),
+    nacionalidade varchar(20) DEFAULT 'Brasil', #se ninguem digitar nada padrão Brasil
+    primary key (id)
+) default charset = utf8;
+
+
+
+
+#############################  WORKBENCH   ###############################
+
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////// inserindo dados na tabela //////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+DNL = DATA MANIPULATION LANGUAGE
+
+insert into pessoas
+(nome, nascimento, sexo, peso, altura, nacionalidade)
+values
+('Godofredo','1984-01-02','M','78.5','1.83','Brasil');
+
+-----------------------------------------------------
+
+insert into pessoas
+(id, nome, nascimento, sexo, peso, altura, nacionalidade)
+values
+(DEFAULT, 'Maria','1999-12-30','F','55','1.65','Portugal');
+
+---------------------------------------------------------
+modo direto:
+
+insert into pessoas values
+(DEFAULT, 'Estefany','1997-12-01','F','63.4','1.75',default);
+
+-----------------------------------------------------------
+ctrl + enter mysql workbench = executar
+============================================================
+
+modo varios ao mesmo tempo:
+
+insert into pessoas values
+(DEFAULT, 'Estefany','1997-12-01','F','63.4','1.75',default),
+(DEFAULT, 'thiago','1967-12-01','M','63.4','1.45',default),
+(DEFAULT, 'João','1994-12-04','M','44.4','1.55',default),
+(DEFAULT, 'Ester','1992-11-01','F','65.4','1.75',default);
+--------------------------------------------------------------
+
+select * from pessoas;           # mostrar toda a tabela
+
+
+////////////////////////////////////////////////////////////////////////////
+////////////////////////// ALTERANDO dados na tabela //////////////////////
+////////////////////////////////////////////////////////////////////////////
+incluir colunas:
+
+
+alter table pessoas
+add column profissao varchar(10);  # criar no final
+
+alter table pessoas
+drop column profissao;   #apagar
+  
+alter table pessoas
+add column profissao varchar(10) after nome; # criar antes do nome
+
+alter table pessoas
+add column codigotest int first ;  # criar no inicio
+
+alter table pessoas
+modify column profissao varchar(20) not null default;  # alterar o varchar e não pode ser nulo tbm
+
+alter table pessoas
+change  column profissao prof2 varchar(20); #alterar nome do campo de profissao para prof2
+
+alter table pessoas
+rename to gafanhotos;     #renomear a tabela inteira
+
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+/////////////////////////////////////////////////////////////////////////////
+
+CREATE TABLE if not exists cursos (
+	nome varchar(30) NOT NULL UNIQUE,
+	descricao text,
+	carga int unsigned, 
+	totaulas int unsigned,
+	ano year default '2016'
+)default charset = utf8;
+
+
+alter table cursos 
+add column idcursos int first; # criar tabela primaria
+
+
+alter table cursos 
+add primary key (idcursos); # chave primaria para tabela
+
+---------------------------------------------------------
+
+alunos
+
+create table if not exists teste(
+id int,
+nome varchar(10),
+idade int
+);
+
+insert into teste value
+
+('1', 'Pedro', '22'),
+('2','Maria','12'),
+('3','Maricota','77');
+
+
+drop table if exists teste; # apagar tudo (tabela teste)
+----------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////
+///////////// MANIPULANDO REGISTROS | LINHAS | TUPLAS //////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+############## cuidado com update sempre tenha um backup  #################
+
+update cursos 
+set nome = 'html5'
+where idcursos = '1';
+
+---------------------------------
+alterar 2 ao mesmo tempo:
+
+update cursos 
+set nome = 'PHP7', ano = '2019'  carga = '50'
+where idcursos = '4';
+limit 2; # limite de 2 listas para mover caso os registros forem iguais
+----------------------------------
+excluir ninhas que não vão usar
+
+delete from cursos
+where idcursos = '5';
+
+-----------------------------------
+Apagar tudo e mantem a extrutura da tabela:
+
+truncate cursos;
+
+////////////////////////////////////////////////////////////////////////////
+/////////////         EXPORTAR IMPORTAR TABELAS       //////////////////////
+////////////////////////////////////////////////////////////////////////////
+exportar:
+server / data export / dump struture and datas = dump é backup banco de dados / 
+export to self container / [] include Create Schema / usuario: root | senha: *****
+
+importar:
+
+server / data import / escolhe a pasta / Dump.sql / usuario: root | senha: *****
+////////////////////////////////////////////////////////////////////////////
+/////////////               PHP MYADMIN               //////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+PHP MYADMIN:
+
+Nome(onde fica o id)
+TipoDocumentação(Int, varchar, enum)
+Tamanho/Valores*(varchar do varchar exemplo) ('M','F')
+Predefinido
+Agrupamento (Collation)
+Atributos (utf8_general_ci)
+Nulo [] (se pode efetuar sem preencher o formulario)
+Índice (PRIMARY, UNIQUE)
+A_I (Auto incrementar se for em branco) obrigatório para ID
+Comentários
+Virtuality
+
+
+////////////////////////////////////////////////////////////////////////////
+/////////////               SELEC FROM                //////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+###################### OBTER DADOS NA TABELA  ######################
+
+select * from cursos; # todas os registros do cursos
+
+select nome, carga, ano from cursos; 
+order by ano, nome;
+
+select nome, carga, ano from cursos
+where ano = '2016'
+order by ano, nome;
+
+--------------------------------------------------------------------------------------
+where ano >= '2016' | where ano != '2016' | where ano > '2016' | where ano <> '2016' |
+--------------------------------------------------------------------------------------
+
+select nome, ano from cursos
+where ano between 2014 and 2016
+order by ano desc, nome asc;
+
+select nome, ano from cursos
+where carga > 35 and < 30
+order by nome;
+ 
+
+-----------------------------------------------------------------------------------------------------
+where nome like 'A%'; #[onde o nome começa com a] | where nome like '%a' #[onde o nome termina com a]
+------------------------------------------------------------------------------------------------------
+where nome like '%a%' #[onde o nome com a em todo os lugares]
+-----------------------------------------------------------------------------------------------------
+where nome not like '%a%' #[onde não tem 'a' em nenhum os lugares]
+-----------------------------------------------------------------------------------------------------
+busca por sobrenome:
+
+
+select nome, ano from cursos
+where nome like '%_silva%' 
+order by nome;
+--------------------------------------------------------
+
+select distinct carga from cursos    # pega todos os que não são iguais
+
+select distinct nocionalidade from cursos    # mostra todos os paises sem repetir
+order by nacionalidade;
+---------------------------------------------------------
+# para contar todos os cursos
+
+select count(*) from cursos; 
+
+select count(*) from cursos
+where carga > 40;
+
+select count(nome) from cursos;
+
+select max(carga) from cursos;
+
+select min(carga) from cursos;
+
+select max(carga) from cursos where ano = '2016';
+
+select sum(totaulas) from cursos where ano = '2016';
+
+select avg(totaulas) from cursos where ano = '2016'; # media
+
+select cargas from cursos; 
+group from carga;                #agrupar
+----------------------------------------------------------------
+////////////////////////////////////////////////////////////////////////////
+/////////////               chaves extrangeiras       //////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+alter table gafanhotos add cursopreferido int;
+----------------------------------------------------------------
+alter table gafanhotos
+add foreign key (cursopreferido)
+references cursos (idcurso);
+----------------------------------------------------------------
+select gafanhotos.nome, gafanhotos.cursopreferido, cursos.nome, cursos.ano from gafanhotos join cursos;
+----------------------------------------------------------------
+select gafanhotos.nome, gafanhotos.cursopreferido, cursos.nome, cursos.ano from gafanhotos join cursos 
+on cursos.idcurso = gafanhotos.cursopreferid
+order by gafanhotos.nome;
+----------------------------------------------------------------
+
+////////////////////////////////////////////////////////////////////////////
+/////////////               INNER JOIN com varias tabelas    ///////////////
+////////////////////////////////////////////////////////////////////////////
+
+create table gafanhoto_assiste_curso (
+	id int not null auto_increment,
+	data date,
+	idgafanhoto int,
+	idcurso int,
+	primary key(id),
+	foreign key (idgafanhoto) references gafanhotos(id),
+	foreign key (idcurso) references cursos(idcurso)
+)default charset = utf8;
+
+insert into gafanhoto_assiste_curso values
+(default,'2014-03-01','2');
+
+
+=========================================================
+/////////////////////////////////////////////////////////
+                      TERMINAL
+		///////////////////////////////////////
+=========================================================
+
+show databases;
+use cadastro;
+status;
+show tables;
+show columns;
+describe pessoas;
+select * from pessoas;
+show create table pessoas;
+exit
+ 
+ 
+ 
+////////////////////////////////////////////////////////////////////////////
+/////////////               PHP COM MYSQL             //////////////////////
+////////////////////////////////////////////////////////////////////////////
+
+error_reporting (E_ALL & ~ E_NOTICE & ~ E_DEPRECATED); // para não exibir mensagem de erro.
+
+$conexao = mysql_connect("localhost","root",""); // conexão do banco de dados
+ 
+mysql_select_db("noticias"); // conexão ao database
+
+$comentar = $_POST['mensage']; // coleta do dado do form
+
+$inserindo = "INSERT INTO noticias VALUES (DEFAULT,'null','$comentar',DEFAULT,'NULL',NOW());"; // variavel de insersão
+
+$intoresultado = mysql_query($inserindo); // mysql_query faz a insersão no banco de dados
+	
+		if($intoresultado == true){ 
+				print"Comentario enviado com sucesso!<br/><br/>";  // verificação pra ver se deu certo
+		}
+
+		****** or die('Não foi possivel conectar ao banco'); // sempre usado ao lado de uma instrução, caso ela não funcione
+
+mysql_close($conexao); // encerra a conexão com o banco!
+
+mysql_fetch_array(); traz um por um os registros da tabela do mysql_query 
+
+
+---------------------------------------------------
+ERRO DE CONEXÃO:
+
+if(!$conexão) {
+
+die('Não foi possivel conectar ao banco');
+
+}// o ! significa não
+ 
+---------------------------------------------------
+Executar um join:
+$join = "select noticias.id_usuario, usuarios.nome from noticias join usuarios order by id_usuarios desc;";
+
+---------------------------------------------------
+Exibir Array de todos os dados com vetores do join:
+
+while($fetch = mysql_fetch_row($resultado) and $joinfetch = mysql_fetch_row($joinresultado)){
+        echo "Nome: " . $joinfetch[1] . "<br/> Comentario: <br/>" . $fetch[2] . 
+		" <br/> Postado no dia: " . date("d/m/Y", strtotime($fetch[5])) . 
+		" as " . date("H:i", strtotime($fetch[5])) . "<br/><br/><br/>";
+    }
+---------------------------------------------------
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
